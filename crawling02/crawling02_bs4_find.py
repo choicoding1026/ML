@@ -4,6 +4,8 @@
     2. 주로 html parsing에 최적화
         1) parsing 처리 담당하는 parser: html.parser
     3. pip install bs4
+    4. 요소 찾기
+        1) find, find_all => 태그로 찾기(태그명, 속성)
 '''
 
 html = \
@@ -20,7 +22,7 @@ html = \
          Once upon a time there were three little sisters.
          <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>
          <a href="http://example.com/lacie" class="sister" id="link2">Lacie</a>
-         <a data-io="link3" href="http://example.com/little" class="sister" id="link3">Little</a>
+         <a data-io="link3" href="http://example.com/little" class="sister2" id="link3">Little</a>
        </p>
        <p class="story">
           story....
@@ -33,26 +35,23 @@ from bs4 import BeautifulSoup
 
 # 1. bs4 초기화
 soup = BeautifulSoup(html, "html.parser")
-print(type(soup))
-print(soup.prettify()) # html 문서 보기
-print(dir(soup))
 
-# 2. h1 태그 접근: 순회방식
-h1 = soup.html.body.h1
-print(h1, type(h1)) # Tag Class
-print(h1.string) # h1 태그의 body 값
+# 2. a 태그 선택(find), 모든 a 태그 선택(find_all)
+link = soup.find(name="a")
+link1 = soup.find_all("a")
+print(link, link.text)
+print(link1)
+for link in link1:
+    print(link.text)
 
-# 3. p 태그 접근
-p = soup.html.body.p
-print(p, type(p)) # Tag Class
-print(p.string)
-print(p.next_element) # p 태그의 자식태그
-print(p.attrs) # p 태그 속성
-print(p.attrs['id']) # p 태그 속성명이 id인 값
-
-# 4. 형제
-p = soup.html.body.p
-p2 = p.next_sibling.next_sibling # 공백 때문에 next_sibling 한번 더 지정
-print(p2)
-print(p2.text)
-print(p2.next_element, type(p2.next_element))
+# 3. 모든 a 태그 선택 + 조건
+link2 = soup.find_all("a", string=["Elsie", "Little"])
+print(link2)
+link3 = soup.find_all("a", class_=["sister", "sister2"])
+print(link3)
+link4 = soup.find_all("a", attrs={"id":"link1","class":"sister"})
+print(link4)
+link5 = soup.find_all("a", attrs={"class":"sister", "id":"link2"})
+print(link5)
+link6 = soup.find_all("a", limit=2) # 갯수
+print(link6)

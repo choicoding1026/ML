@@ -12,9 +12,11 @@
 
 from bs4 import BeautifulSoup
 import requests
+from urllib.request import urlretrieve
 
 # 1. url 지정
-url = "http://www.daum.net"
+searchValue = "BTS"
+url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=image&query=hyunjin+ryu&oquery=ryu+99&tqi=UGQp2wprvmsssmvDWJ0ssssss1h-247170"
 
 # 2. url 요청
 session = requests.session()
@@ -25,7 +27,12 @@ html = response_data.text
 # 3. bs4 생성
 soup = BeautifulSoup(html, 'html.parser')
 
-# 4. select 함수 이용해서 parsing
-menu_list = soup.select(".list_mainsvc > li > a > span")
-for menu in menu_list:
-    print(menu.text)
+img_list = soup.select("div.img_area._item > a.thumb > img")
+# print(len(img_list))
+for i, img in enumerate(img_list, 1):
+    # print(img)
+    fileName = f"c:\\temp\\{i}.png"
+
+    urlretrieve(img['data-source'], fileName)
+
+print("completed")
