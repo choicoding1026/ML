@@ -1,0 +1,44 @@
+
+1.  행전안전부
+   행전안전부 RSS 활용
+   1) 행정안전부 url :  https://www.mois.go.kr
+   2) 행정안전부 RSS :   https://www.mois.go.kr/gpms/view/jsp/rss/rss.jsp?ctxCd=1014
+
+
+2. daum 사이트의  '인기검색 top 10' 주식 정보 얻기
+    1) 기본적으로 웹브라우저의 URL를 이용한다.
+       http://finance.daum.net
+    2) 만약 없으면 F12에서 '네트워크' 탭에서  URL을 찾아야 된다.
+       http://finance.daum.net/api/search/ranks?limit=10
+
+
+3.kobis 사이트 ( 영화관입장권통합전산망,  일별 박스 오피스 제공해줌 )
+  https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do  에서 사용법 확인 가능
+  http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=3d430a039fb1bae3fe5f0bc48df64e46&targetDt=20120101
+
+
+4. http://httpbin.org
+   ==> 간단한  request 와 response 실습하기 위한 서버
+
+5. JSON 실습
+  1) https://jsonplaceholder.typicode.com/
+   ==> 실습위한 임의의 json 데이터를 반환
+
+	/posts	100 posts
+	/comments	500 comments
+	/albums	100 albums
+	/photos	5000 photos
+	/todos	200 todos
+	/users	10 users
+
+
+6. OpenAPI weather
+
+    http://api.openweathermap.org/data/2.5/weather?APPID=474d59dd890c4108f62f192e0c6fce01&q=도시명
+
+    예>     http://api.openweathermap.org/data/2.5/weather?APPID=474d59dd890c4108f62f192e0c6fce01&q=seoul
+    http://api.openweathermap.org/data/2.5/weather?APPID=474d59dd890c4108f62f192e0c6fce01&q=New York
+    http://api.openweathermap.org/data/2.5/weather?APPID=474d59dd890c4108f62f192e0c6fce01&q=Tokyo
+
+7. 서울시 코로나19
+  https://www.seoul.go.kr/coronaV/coronaStatus.do
